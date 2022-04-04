@@ -2,6 +2,7 @@ import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { WinstonModule } from "nest-winston";
 import * as winston from "winston";
+import { PostsModule } from "posts/module";
 
 @Module({
 	imports: [
@@ -21,6 +22,7 @@ import * as winston from "winston";
 				new winston.transports.File({ filename: "logs/combined.log" }),
 			],
 		}),
+		PostsModule,
 	],
 })
 export class AppModule {}

@@ -14,3 +14,4 @@ interface CreateFileTelegram {
 type CreateFileDto = CreateFileTelegram;
 
 export type { CreateFileDto };
+export { FileProvider };

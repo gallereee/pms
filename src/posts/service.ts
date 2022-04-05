@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { CreatePostDto } from "posts/dto";
+import { CreatePostDto, SetPostDescriptionData } from "posts/dto";
 import { Post, Prisma } from "@gallereee/db-client";
 import { PrismaService } from "prisma/service";
 import PhotoCreateWithoutPostInput = Prisma.PhotoCreateWithoutPostInput;
@@ -17,6 +17,15 @@ export class PostsService {
 
 		return this.prisma.post.create({
 			data: { accountId, photos: { create: photosToCreate } },
+		});
+	}
+
+	async setPostDescription(data: SetPostDescriptionData): Promise<void> {
+		const { postId, description } = data;
+
+		await this.prisma.post.update({
+			where: { id: postId },
+			data: { description },
 		});
 	}
 }

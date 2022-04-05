@@ -1,6 +1,6 @@
 {
   "name": "@gallereee/pms",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Post Management Service for Gallereee",
   "author": "Dmitry Bardyshev",
   "license": "ISC",
@@ -31,7 +31,7 @@
     "prepublishOnly": "npm run lint",
     "preversion": "npm run lint",
     "prepare": "npm run build-package",
-		"postinstall": "npx prisma generate"
+    "postinstall": "npx prisma generate"
   },
   "dependencies": {
     "@gallereee/db-client": "^0.0.17",

@@ -1,27 +1,66 @@
-import { TCPRequestCommon, TCPRequestWithAccountId } from "types";
-import { Photo, Post } from "@gallereee/db-client";
-import { CreateFileDto } from "files/dto";
+import { RequestDto } from "types";
+import { Account, Photo, Post } from "@gallereee/db-client";
+import { CreatePostPhoto } from "photos/dto";
 
 const CMD_POSTS_CREATE = "posts/create";
 const CMD_POSTS_SET_DESCRIPTION = "posts/setDescription";
+const CMD_POSTS_GET = "posts/get";
+const CMD_POSTS_GET_ACCOUNT_POSTS = "posts/getAccountPosts";
 
-interface CreatePostPhoto {
-	width: Photo["width"];
-	height: Photo["height"];
-	file: CreateFileDto;
-}
+// CreatePost
 
-interface CreatePostDto extends TCPRequestCommon, TCPRequestWithAccountId {
+interface CreatePostRequest {
+	accountId: Account["id"];
 	photos: CreatePostPhoto[];
 }
+type CreatePostRequestDto = RequestDto<CreatePostRequest>;
+type CreatePostResponseDto = Post;
 
-interface SetPostDescriptionData {
+// SetPostDescription
+
+interface SetPostDescriptionRequest {
 	postId: Post["id"];
 	description: string;
 }
-interface SetPostDescriptionDto
-	extends TCPRequestCommon,
-		SetPostDescriptionData {}
+type SetPostDescriptionRequestDto = RequestDto<SetPostDescriptionRequest>;
+type SetPostDescriptionResponseDto = boolean;
 
-export { CMD_POSTS_CREATE, CMD_POSTS_SET_DESCRIPTION };
-export type { CreatePostDto, SetPostDescriptionData, SetPostDescriptionDto };
+// GetPost
+
+interface GetPostRequest {
+	id: Post["id"];
+}
+type GetPostRequestDto = RequestDto<GetPostRequest>;
+type GetPostResponseDto = (Post & { photos: Photo[] }) | null;
+
+// GetAccountPosts
+
+interface GetAccountPostsRequest {
+	accountId: Account["id"];
+}
+interface AccountPost {
+	id: Post["id"];
+	coverPhotoId: Photo["id"];
+}
+type GetAccountPostsRequestDto = RequestDto<GetAccountPostsRequest>;
+type GetAccountPostsResponseDto = AccountPost[];
+
+export {
+	CMD_POSTS_CREATE,
+	CMD_POSTS_SET_DESCRIPTION,
+	CMD_POSTS_GET,
+	CMD_POSTS_GET_ACCOUNT_POSTS,
+};
+export type {
+	CreatePostRequest,
+	CreatePostRequestDto,
+	CreatePostResponseDto,
+	SetPostDescriptionRequest,
+	SetPostDescriptionRequestDto,
+	SetPostDescriptionResponseDto,
+	GetPostRequestDto,
+	GetPostResponseDto,
+	AccountPost,
+	GetAccountPostsRequestDto,
+	GetAccountPostsResponseDto,
+};

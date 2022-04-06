@@ -3,6 +3,7 @@ import { ConfigModule } from "@nestjs/config";
 import { WinstonModule } from "nest-winston";
 import * as winston from "winston";
 import { PostsModule } from "posts/module";
+import { PhotosModule } from "photos/module";
 
 @Module({
 	imports: [
@@ -23,6 +24,7 @@ import { PostsModule } from "posts/module";
 			],
 		}),
 		PostsModule,
+		PhotosModule,
 	],
 })
 export class AppModule {}

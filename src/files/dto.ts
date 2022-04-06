@@ -1,17 +1,15 @@
 import { FileProvider, Prisma } from "@gallereee/db-client";
 
-import JsonObject = Prisma.JsonObject;
-
-interface CreateFileTelegramData extends JsonObject {
+interface FileTelegramData extends Prisma.JsonObject {
 	fileId: string;
 }
 
 interface CreateFileTelegram {
 	provider: typeof FileProvider.TELEGRAM;
-	data: CreateFileTelegramData;
+	data: FileTelegramData;
 }
 
-type CreateFileDto = CreateFileTelegram;
+type CreateFileData = CreateFileTelegram;
 
-export type { CreateFileDto };
+export type { FileTelegramData, CreateFileData };
 export { FileProvider };

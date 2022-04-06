@@ -7,7 +7,7 @@
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "prisma": {
-    "schema": "node_modules/@gallereee/db-client/dist/schema.prisma"
+    "schema": "./node_modules/@gallereee/db-client/dist/schema.prisma"
   },
   "repository": "https://github.com/gallereee/pms",
   "publishConfig": {
@@ -42,6 +42,7 @@
     "@nestjs/microservices": "^8.4.3",
     "@nestjs/platform-express": "^8.0.0",
     "@prisma/client": "^3.11.1",
+    "axios": "^0.26.1",
     "lodash": "^4.17.21",
     "nest-winston": "^1.6.2",
     "reflect-metadata": "^0.1.13",

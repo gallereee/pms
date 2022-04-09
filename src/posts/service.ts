@@ -46,6 +46,7 @@ export class PostsService {
 		const posts = await this.prisma.post.findMany({
 			where: { accountId },
 			include: { photos: true },
+			orderBy: { createdAt: "desc" },
 		});
 
 		return posts.map((post) => ({

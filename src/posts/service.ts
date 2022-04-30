@@ -16,7 +16,12 @@ export class PostsService {
 		const { photos, accountId } = data;
 
 		const photosToCreate: PhotoCreateWithoutPostInput[] = photos.map(
-			({ width, height, file }) => ({ width, height, file: { create: file } })
+			({ width, height, file, order }) => ({
+				width,
+				height,
+				file: { create: file },
+				order,
+			})
 		);
 
 		return this.prisma.post.create({
@@ -38,14 +43,14 @@ export class PostsService {
 	): Promise<(Post & { photos: Photo[] }) | null> {
 		return this.prisma.post.findUnique({
 			where: { id },
-			include: { photos: true },
+			include: { photos: { orderBy: { order: "asc" } } },
 		});
 	}
 
 	async getAccountPosts(accountId: Account["id"]): Promise<AccountPost[]> {
 		const posts = await this.prisma.post.findMany({
 			where: { accountId },
-			include: { photos: true },
+			include: { photos: { orderBy: { order: "asc" } } },
 			orderBy: { createdAt: "desc" },
 		});
 

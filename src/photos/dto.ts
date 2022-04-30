@@ -7,6 +7,7 @@ const CMD_PHOTOS_GET_PHOTO_FILE_URL = "photos/getPhotoFileUrl";
 interface CreatePostPhoto {
 	width: Photo["width"];
 	height: Photo["height"];
+	order: Photo["order"];
 	file: CreateFileData;
 }
 

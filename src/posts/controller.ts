@@ -3,11 +3,14 @@ import { PostsService } from "posts/service";
 import { MessagePattern } from "@nestjs/microservices";
 import {
 	CMD_POSTS_CREATE,
+	CMD_POSTS_DELETE,
 	CMD_POSTS_GET,
 	CMD_POSTS_GET_ACCOUNT_POSTS,
 	CMD_POSTS_SET_DESCRIPTION,
 	CreatePostRequestDto,
 	CreatePostResponseDto,
+	DeletePostRequestDto,
+	DeletePostResponseDto,
 	GetAccountPostsRequestDto,
 	GetAccountPostsResponseDto,
 	GetPostRequestDto,
@@ -23,6 +26,13 @@ export class PostsController {
 	@MessagePattern({ cmd: CMD_POSTS_CREATE })
 	async createPost(data: CreatePostRequestDto): Promise<CreatePostResponseDto> {
 		return this.postsService.createPost(data);
+	}
+
+	@MessagePattern({ cmd: CMD_POSTS_DELETE })
+	async deletePost(data: DeletePostRequestDto): Promise<DeletePostResponseDto> {
+		await this.postsService.deletePost(data);
+
+		return null;
 	}
 
 	@MessagePattern({ cmd: CMD_POSTS_SET_DESCRIPTION })

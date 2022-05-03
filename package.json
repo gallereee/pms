@@ -1,6 +1,6 @@
 {
   "name": "@gallereee/pms",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Post Management Service for Gallereee",
   "author": "Dmitry Bardyshev",
   "license": "ISC",
@@ -30,7 +30,7 @@
     "preversion": "npm run lint"
   },
   "dependencies": {
-    "@gallereee/db-client": "^0.0.20",
+    "@gallereee/db-client": "^1.0.1",
     "@nestjs/common": "^8.0.0",
     "@nestjs/config": "^2.0.0",
     "@nestjs/core": "^8.0.0",

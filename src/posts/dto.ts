@@ -20,10 +20,10 @@ type CreatePostResponseDto = Post;
 // DeletePost
 
 interface DeletePostRequest {
-	postId: Post["id"];
+	id: Post["id"];
 }
 type DeletePostRequestDto = RequestDto<DeletePostRequest>;
-type DeletePostResponseDto = void;
+type DeletePostResponseDto = null;
 
 // SetPostDescription
 

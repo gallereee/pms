@@ -30,7 +30,9 @@ export class PostsController {
 
 	@MessagePattern({ cmd: CMD_POSTS_DELETE })
 	async deletePost(data: DeletePostRequestDto): Promise<DeletePostResponseDto> {
-		return this.postsService.deletePost(data);
+		await this.postsService.deletePost(data);
+
+		return null;
 	}
 
 	@MessagePattern({ cmd: CMD_POSTS_SET_DESCRIPTION })

@@ -3,6 +3,7 @@ import { Account, Photo, Post } from "@gallereee/db-client";
 import { CreatePostPhoto } from "photos/dto";
 
 const CMD_POSTS_CREATE = "posts/create";
+const CMD_POSTS_DELETE = "posts/delete";
 const CMD_POSTS_SET_DESCRIPTION = "posts/setDescription";
 const CMD_POSTS_GET = "posts/get";
 const CMD_POSTS_GET_ACCOUNT_POSTS = "posts/getAccountPosts";
@@ -15,6 +16,14 @@ interface CreatePostRequest {
 }
 type CreatePostRequestDto = RequestDto<CreatePostRequest>;
 type CreatePostResponseDto = Post;
+
+// DeletePost
+
+interface DeletePostRequest {
+	postId: Post["id"];
+}
+type DeletePostRequestDto = RequestDto<DeletePostRequest>;
+type DeletePostResponseDto = void;
 
 // SetPostDescription
 
@@ -47,6 +56,7 @@ type GetAccountPostsResponseDto = AccountPost[];
 
 export {
 	CMD_POSTS_CREATE,
+	CMD_POSTS_DELETE,
 	CMD_POSTS_SET_DESCRIPTION,
 	CMD_POSTS_GET,
 	CMD_POSTS_GET_ACCOUNT_POSTS,
@@ -55,6 +65,9 @@ export type {
 	CreatePostRequest,
 	CreatePostRequestDto,
 	CreatePostResponseDto,
+	DeletePostRequest,
+	DeletePostRequestDto,
+	DeletePostResponseDto,
 	SetPostDescriptionRequest,
 	SetPostDescriptionRequestDto,
 	SetPostDescriptionResponseDto,

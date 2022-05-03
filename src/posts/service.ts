@@ -2,6 +2,7 @@ import { Injectable } from "@nestjs/common";
 import {
 	AccountPost,
 	CreatePostRequest,
+	DeletePostRequest,
 	SetPostDescriptionRequest,
 } from "posts/dto";
 import { Account, Photo, Post, Prisma } from "@gallereee/db-client";
@@ -26,6 +27,14 @@ export class PostsService {
 
 		return this.prisma.post.create({
 			data: { accountId, photos: { create: photosToCreate } },
+		});
+	}
+
+	async deletePost(data: DeletePostRequest): Promise<void> {
+		const { postId } = data;
+
+		await this.prisma.post.delete({
+			where: { id: postId },
 		});
 	}
 

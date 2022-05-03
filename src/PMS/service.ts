@@ -3,10 +3,13 @@ import { ClientProxy } from "@nestjs/microservices";
 import { firstValueFrom } from "rxjs";
 import {
 	CMD_POSTS_CREATE,
+	CMD_POSTS_DELETE,
 	CMD_POSTS_GET,
 	CMD_POSTS_GET_ACCOUNT_POSTS,
 	CMD_POSTS_SET_DESCRIPTION,
 	CreatePostRequestDto,
+	DeletePostRequestDto,
+	DeletePostResponseDto,
 	GetAccountPostsRequestDto,
 	GetAccountPostsResponseDto,
 	GetPostRequestDto,
@@ -28,6 +31,15 @@ export class PMSService {
 	async createPost(data: CreatePostRequestDto): Promise<Post> {
 		return firstValueFrom(
 			this.PMS.send<Post, CreatePostRequestDto>({ cmd: CMD_POSTS_CREATE }, data)
+		);
+	}
+
+	async deletePost(data: DeletePostRequestDto): Promise<DeletePostResponseDto> {
+		return firstValueFrom(
+			this.PMS.send<DeletePostResponseDto, DeletePostRequestDto>(
+				{ cmd: CMD_POSTS_DELETE },
+				data
+			)
 		);
 	}
 
